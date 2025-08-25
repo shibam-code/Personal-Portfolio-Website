@@ -1,0 +1,467 @@
+/**
+ * ===================================================================
+ * Main Stylesheet (style.css)
+ * -------------------------------------------------------------------
+ * This file contains the primary desktop-first styles for the portfolio.
+ * It includes theme variables, base styles, layout, and component styling.
+ * ===================================================================
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===================================================================
+ * THEME VARIABLES
+ * =================================================================== */
+
+/**
+ * Light Theme (Default)
+ * Defines the color palette for the light mode.
+ */
+:root {
+  --bg-color: #faf0e6; /* Warm linen background */
+  --text-color: #5a5a5a;
+  --heading-color: #333;
+  --card-bg-color: #fdf5e6; /* Lighter 'Old Lace' for cards */
+  --card-border-color: #e6dcd2; /* Complementary border color */
+  --shadow-color: rgba(0, 0, 0, 0.08); /* Softer shadow */
+  --transition-speed: 0.3s;
+
+  /* Primary Button */
+  --primary-btn-bg: #337ab7;
+  --primary-btn-text: #fff;
+  --primary-btn-hover-bg: #286090;
+
+  /* Secondary Button (Outline) */
+  --secondary-btn-bg: transparent;
+  --secondary-btn-text: #337ab7;
+  --secondary-btn-border: #337ab7;
+  --secondary-btn-hover-bg: #337ab7;
+  --secondary-btn-hover-text: #fff;
+
+  /* Skill Tags */
+  --skill-tag-bg: #e6dcd2;
+  --skill-tag-text: #555;
+}
+
+/**
+ * Dark Theme
+ * Overrides the default variables when the .dark-theme class is applied to the body.
+ */
+.dark-theme {
+  --bg-color: #211a16; /* Rich dark chocolate */
+  --text-color: #e0d8d1; /* Creamy off-white text */
+  --heading-color: #ffffff; /* Pure white for headings */
+  --card-bg-color: #32251e; /* Lighter seal brown for cards */
+  --card-border-color: #4a3a30; /* Dark liver border */
+  --shadow-color: rgba(0, 0, 0, 0.3); /* Deeper shadow */
+
+  /* Primary Button (Solid) */
+  --primary-btn-bg: #448ac8;
+  --primary-btn-hover-bg: #5a9fd8;
+
+  /* Secondary Button (Outline) */
+  --secondary-btn-text: #448ac8;
+  --secondary-btn-border: #448ac8;
+  --secondary-btn-hover-bg: #448ac8;
+  --secondary-btn-hover-text: #fff;
+
+  /* Skill Tags */
+  --skill-tag-bg: #4a3a30; /* Dark liver to match border */
+  --skill-tag-text: #e0d8d1; /* Creamy text */
+}
+
+/* ===================================================================
+ * GENERAL & BASE STYLES
+ * =================================================================== */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===================================================================
+ * HEADER & NAVIGATION
+ * =================================================================== */
+header {
+  /* Sticky header that stays at the top of the viewport on scroll */
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* Ensure header is always on top */
+  padding: 20px 5%;
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 5px var(--shadow-color);
+  transition: background-color 0.3s;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: var(--heading-color);
+}
+
+.logo-icon path {
+  fill: var(--heading-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.9em;
+  padding-bottom: 5px; /* Add some space for the underline */
+}
+
+  /* Animated underline effect on hover for navigation links */
+  nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--heading-color);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adjust gap between profile icon and toggle */
+}
+
+.nav-links {
+  margin-right: 50px; /* Adjust space between links and icons */
+}
+
+.profile-icon img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--heading-color);
+}
+
+/* ===================================================================
+ * MAIN CONTENT & LAYOUT
+ * =================================================================== */
+/* Main content container with horizontal centering and top padding to avoid overlapping the sticky header */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 90px 20px 20px 20px; /* Adjust top padding for sticky header */
+}
+
+/* About Section */
+#about {
+  text-align: center;
+  padding-top: 15px; /* Reduce top padding for the first section */
+}
+
+#about .profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+#about h1 {
+  font-size: 1.8em;
+  color: var(--heading-color);
+  margin: 0;
+  font-weight: 600;
+}
+
+#about .job-title {
+  font-size: 0.9em;
+  color: var(--primary-btn-text);
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+#about .location {
+  font-size: 0.9em;
+  color: var(--primary-btn-text);
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+#about .intro {
+  max-width: 800px;
+  margin: 25px auto 30px;
+  font-size: 0.95em;
+}
+
+.social-links .btn {
+  padding: 10px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  background-color: var(--primary-btn-bg);
+  color: var(--primary-btn-text);
+  border: 1px solid transparent;
+}
+
+.social-links .btn:hover {
+  background-color: var(--primary-btn-hover-bg);
+}
+
+/* ===================================================================
+ * SECTION STYLING
+ * =================================================================== */
+/**
+ * General styling for all content sections (About, Skills, etc.).
+ * Acts as a 'card' for content.
+ * scroll-margin-top offsets the scroll position to account for the sticky header when jumping to an ID.
+ */
+section {
+  position: relative; /* Establish a stacking context */
+  padding: 40px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 0 25px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-margin-top: 100px; /* Offset for sticky nav */
+}
+
+h2 {
+  font-size: 1.5em;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Skills Section: Styles for the skill tags container and individual tags */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.skill-tags span {
+  background-color: var(--skill-tag-bg);
+  color: var(--skill-tag-text);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9em;
+  border: 1px solid transparent;
+  transition: transform var(--transition-speed) ease;
+}
+
+.skill-tags span:hover {
+  transform: translateY(-3px);
+}
+
+/* Projects Section: Styles for the project cards */
+.project-card {
+  display: flex;
+  gap: 30px;
+  text-align: left;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.project-info {
+  flex: 1;
+}
+
+.project-info h3 {
+  font-size: 1.1em;
+  color: var(--heading-color);
+  margin-top: 0;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.project-info p {
+  font-size: 0.9em;
+  margin-bottom: 3px;
+}
+
+.btn-view {
+  display: inline-block;
+  margin-top: 15px; /* Add space above the button */
+  padding: 8px 18px;
+  background-color: var(--secondary-btn-bg);
+  color: var(--secondary-btn-text);
+  border: 1px solid var(--secondary-btn-border);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.btn-view:hover {
+  background-color: var(--secondary-btn-hover-bg);
+  color: var(--secondary-btn-hover-text);
+}
+
+.project-image {
+  flex-basis: 300px;
+}
+
+.project-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* ===================================================================
+ * CONTACT FORM
+ * =================================================================== */
+#contact form {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to a single column */
+  gap: 20px; /* Space between form rows */
+  max-width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact label {
+  margin-bottom: 8px; /* More space between label and input */
+  font-weight: 500;
+  font-size: 0.85em;
+  color: var(--text-color);
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px; /* Slightly softer radius */
+  font-family: "Poppins", sans-serif;
+  background-color: var(--card-bg-color); /* Use card color for inputs */
+  color: var(--text-color);
+  box-sizing: border-box;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+/* Adds a visual highlight effect when a user clicks into a form field */
+#contact input:focus,
+#contact textarea:focus {
+  outline: none;
+  border-color: var(--primary-btn-bg); /* Highlight with theme color */
+  box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+}
+
+#contact input::placeholder,
+#contact textarea::placeholder {
+  color: #999; /* Softer placeholder text */
+}
+
+#contact textarea {
+  resize: vertical;
+  min-height: 150px; /* A bit taller for more space */
+}
+
+/* On wider screens, the form switches to a two-column grid for a more compact layout */
+@media screen and (min-width: 768px) {
+  #contact form {
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-areas:
+      "name email"
+      "message message"
+      "button button";
+  }
+  #name-group { grid-area: name; }
+  #email-group { grid-area: email; }
+  #message-group { grid-area: message; }
+  #button-group { grid-area: button; }
+}
+
+.form-footer {
+  text-align: right;
+}
+
+/* Primary submit button for the contact form */
+.btn-send {
+  width: 100%; /* Full width button */
+  padding: 12px 30px;
+  background-color: var(--primary-btn-bg);
+  color: var(--primary-btn-text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color var(--transition-speed);
+}
+
+.btn-send:hover {
+  background-color: var(--primary-btn-hover-bg);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--card-border-color);
+  font-size: 0.9em;
+  color: var(--text-color);
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

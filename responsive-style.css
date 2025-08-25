@@ -1,0 +1,360 @@
+/**
+ * ===================================================================
+ * Responsive Stylesheet (responsive-style.css)
+ * -------------------------------------------------------------------
+ * This file contains all the media queries and styles needed to make
+ * the portfolio layout adapt to different screen sizes, ensuring a
+ * great experience on tablets and mobile devices.
+ * ===================================================================
+ */
+
+/* ===================================================================
+ * HAMBURGER MENU (MOBILE NAVIGATION)
+ * =================================================================== */
+.hamburger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* ===================================================================
+ * TABLET & SMALLER DESKTOPS (max-width: 992px)
+ * =================================================================== */
+@media screen and (max-width: 992px) {
+    body {
+        padding: 0 3%; /* Add some padding to the body */
+    }
+
+    header {
+        padding: 20px 0; /* Adjust header padding */
+    }
+
+    main {
+        margin: 20px auto; /* Reduce top/bottom margin */
+        padding: 0;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+
+/* ===================================================================
+ * MOBILE DEVICES (max-width: 768px)
+ * =================================================================== */
+@media screen and (max-width: 768px) {
+    /* General Body & Typography */
+    body {
+        padding: 0 5%; /* Increase padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 2.2em; /* Adjust heading sizes */
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    /* Header & Navigation */
+    .nav-right {
+        gap: 15px;
+    }
+
+        /* The mobile navigation menu is hidden by default and appears as an overlay when active */
+    .nav-links {
+        display: none;
+        position: fixed; /* Changed to fixed for better coverage */
+        left: 0;
+        right: 0;
+        top: 75px; /* Position below the header */
+        background-color: var(--bg-color); /* Use correct theme variable */
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 4px 8px var(--shadow-color);
+        z-index: 10000; /* Higher than header to appear on top */
+        border-top: 1px solid var(--card-border-color); /* Add border for separation */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    .nav-links ul li a {
+        padding: 15px 0;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid var(--card-border-color);
+    }
+    
+    .nav-links ul li:last-child a {
+        border-bottom: none;
+    }
+
+    .nav-links ul li a::after {
+        display: none; /* Hide underline animation on mobile */
+    }
+
+    .hamburger {
+        display: block;
+        order: 3; /* Ensure it's on the far right */
+    }
+    
+    .profile-icon {
+        order: 2;
+    }
+
+    .theme-toggle-btn {
+        order: 1;
+    }
+
+        /* Simple animation for the hamburger icon transforming into an 'X' */
+    .hamburger.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger.toggle .line2 { opacity: 0; }
+    .hamburger.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+    /* About Section */
+    #about {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .about-content { order: 2; }
+    .about-image { order: 1; }
+    .about-image img {
+        width: 200px; /* Adjust size for mobile */
+        height: 200px;
+    }
+
+    .social-links {
+        display: flex; /* Ensure flex context for gap */
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center them horizontally */
+        gap: 10px; /* Add vertical space between them */
+    }
+
+    /* Main Content Adjustments */
+    main {
+        padding: 80px 15px 15px 15px; /* Reduce padding significantly */
+    }
+
+    /* Sections */
+    section {
+        padding: 20px 15px; /* Much smaller padding */
+        margin-bottom: 20px;
+        border-radius: 8px; /* Smaller border radius */
+    }
+
+    /* About Section */
+    #about {
+        padding-top: 10px;
+    }
+
+    #about .profile-pic {
+        width: 100px; /* Smaller profile picture */
+        height: 100px;
+        margin-bottom: 12px;
+    }
+
+    #about h1 {
+        font-size: 1.5em; /* Smaller heading */
+        margin-bottom: 5px;
+    }
+
+    #about .job-title,
+    #about .location {
+        font-size: 0.85em; /* Smaller text */
+        margin: 1px 0;
+    }
+
+    #about .intro {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin: 15px 0;
+    }
+
+    /* Social Links */
+    .social-links {
+        gap: 8px; /* Smaller gap */
+    }
+
+    .social-links .btn {
+        padding: 8px 20px; /* Smaller buttons */
+        font-size: 0.85em;
+        border-radius: 6px;
+    }
+
+    /* Skills Section */
+    .skill-tags {
+        gap: 8px; /* Smaller gaps */
+    }
+
+    .skill-tags span {
+        padding: 6px 12px; /* Smaller skill tags */
+        font-size: 0.8em;
+        border-radius: 6px;
+    }
+
+    /* Projects Section */
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .project-info {
+        order: 2;
+        /* Spacing is now handled by margin-bottom on the image */
+    }
+
+    .project-info h3 {
+        font-size: 1.1em; /* Smaller heading */
+        margin-bottom: 6px;
+        line-height: 1.3;
+    }
+
+    .project-info p {
+        font-size: 0.85em; /* Smaller text */
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+
+    .project-image {
+        order: 1;
+        width: 100%;
+        max-width: 200px;
+        height: 100px; /* Explicit height */
+        margin: 0 auto; /* Center the image container */
+        margin-bottom: 15px; /* Add space directly below the image */
+        flex-shrink: 0;
+    }
+
+    .project-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        object-fit: cover;
+    }
+
+    .btn-view {
+        margin-top: 15px;
+        padding: 8px 16px; /* Smaller button */
+        font-size: 0.85em;
+        border-radius: 5px;
+    }
+
+    /* Contact Form */
+    #contact form {
+        gap: 12px; /* Smaller gaps */
+    }
+
+    input, textarea {
+        padding: 10px; /* Smaller padding */
+        font-size: 0.9em;
+        border-radius: 5px;
+    }
+
+    .btn-send {
+        padding: 10px;
+        font-size: 0.9em;
+        border-radius: 5px;
+    }
+
+}
+
+/* ===================================================================
+ * EXTRA-SMALL MOBILE DEVICES (max-width: 480px)
+ * =================================================================== */
+@media screen and (max-width: 480px) {
+    /* Even more aggressive optimizations for very small screens */
+    body {
+        padding: 0 3%;
+    }
+
+    main {
+        padding: 70px 10px 10px 10px; /* Minimal padding */
+    }
+
+    section {
+        padding: 15px 10px; /* Very compact */
+        margin-bottom: 15px;
+    }
+
+    #about .profile-pic {
+        width: 80px; /* Even smaller */
+        height: 80px;
+    }
+
+    #about h1 {
+        font-size: 1.3em;
+    }
+
+    #about .intro {
+        font-size: 0.85em;
+    }
+
+    .social-links .btn {
+        padding: 6px 16px;
+        font-size: 0.8em;
+    }
+
+    .skill-tags span {
+        padding: 5px 10px;
+        font-size: 0.75em;
+    }
+
+    .project-card {
+        padding: 12px;
+    }
+
+    .project-info h3 {
+        font-size: 1em;
+    }
+
+    .project-info p {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+    }
+
+    .project-image {
+        height: 80px; /* Smaller explicit height for smallest screens */
+        margin-bottom: 12px; /* Consistent spacing */
+    }
+
+    .project-image img {
+        height: 100%; /* Fill container */
+        object-fit: cover;
+    }
+
+    .btn-view {
+        padding: 6px 14px;
+        font-size: 0.8em;
+    }
+
+    input, textarea {
+        padding: 8px;
+        font-size: 16px; /* Keep at 16px to prevent zoom */
+    }
+
+    .btn-send {
+        padding: 8px;
+    }
+}
